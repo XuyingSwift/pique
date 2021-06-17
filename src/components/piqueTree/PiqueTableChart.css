@@ -1,0 +1,19 @@
+.bigAndBoldClass{
+    width:250px;
+    height: 50px;
+    color : white;
+    background-color: #226192;
+    font-size: large;
+}
+.gameCell {
+    width: 400px;
+}
+.highlightClass{
+    background-color: #5babe9;
+}
+
+.buttonContainer {
+
+    display: flex;
+    justify-content: center;
+}
