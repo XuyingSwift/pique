@@ -2,12 +2,12 @@ import React from 'react';
 import * as s from './SignInAndSignUpPage.styles';
 import SignIn from '../../components/sigin/SignIn.component'
 import SignUp from '../../components/signup/SignUp.component'
-import SubHeader from '../../components/subHeader/SubHeader.component';
+import SubHeader from '../../components/subMainHeader/SubHeader.component';
 
-const SignInAndSignOutPage= () => {
+
+const SignInAndSignOutPage= ({props}) => {
     return(
        <s.LoginPageContainer>
-            <SubHeader/>
             <s.Group>
                 <SignIn/>
                 <SignUp/>

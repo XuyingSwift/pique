@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-
+import { DeepKoamaru } from '../colors/colors';
 const buttonStyles = css`
-  background-color: #226192;
+  background-color: ${DeepKoamaru};
   color: white;
   border: none;
   &:hover {

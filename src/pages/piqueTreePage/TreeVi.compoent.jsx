@@ -10,12 +10,12 @@ const containerStyles = {
   };
   
   // define and style the path function into the tree
-  const straightPathFunc = (linkDatum, orientation) => {
+  /*const straightPathFunc = (linkDatum, orientation) => {
       const { source, target } = linkDatum;
       return orientation === 'horizontal'
         ? `M${source.y},${source.x}L${target.y},${target.x}`
         : `M${source.x},${source.y}L${target.x},${target.y}`;
-    };
+    };*/
 
   // Here we're using `renderCustomNodeElement` to represent each node
   // as an SVG `rect` instead of the default `circle`.
@@ -50,7 +50,7 @@ const TreeVi = () => {
       <Tree
         data={cerl}
         translate={translate}
-        pathFunc={straightPathFunc}
+       
         orientation="vertical"
         nodeSize={nodeSize}
         renderCustomNodeElement={(rd3tProps) =>

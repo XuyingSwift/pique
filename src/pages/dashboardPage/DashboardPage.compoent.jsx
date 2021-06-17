@@ -1,5 +1,5 @@
 import React from 'react'
-import SubHeader from '../../components/subHeader/SubHeader.component'
+import SubHeader from '../../components/subMainHeader/SubHeader.component'
 import * as s from './DashboardPage.styles'
 import CardGroup from '../../components/cardGroup/CardGroup.compoent'
 import { DarkRed, Red, Yellow, Green } from '../../components/colors/colors'

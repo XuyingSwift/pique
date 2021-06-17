@@ -16,7 +16,7 @@ const Header = ({currentUser, hidden}) => {
                 : <s.OptionLink to='/signin' style={{textDecoration: 'none'}}> Sign In</s.OptionLink> }
                 {currentUser ? <s.OptionLink to='div' style={{textDecoration: 'none'}}><UserAvatar/></s.OptionLink> : null}
             </s.OptionsContainer> 
-            {hidden ? null : <UserAvatarDropdown/>}
+            {(hidden)? null : <UserAvatarDropdown/>}
             
         </s.HeaderContainer>
         

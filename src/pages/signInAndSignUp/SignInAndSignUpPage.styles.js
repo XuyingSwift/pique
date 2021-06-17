@@ -4,11 +4,10 @@ export const LoginPageContainer = styled.div`
     grid-area: mainview;
 
 `
-
 export const Group = styled.div`
+    margin: 120px auto;
     width: 1000px;
     display: flex;
     justify-content: space-between;
-    margin: 30px auto;
     flex-direction: row;
 `
