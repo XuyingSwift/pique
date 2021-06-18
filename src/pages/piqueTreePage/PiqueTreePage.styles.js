@@ -1,9 +1,26 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { Blue } from "../../components/colors/colors";
+
+const columnsLayoutOpen = css`
+    grid-template-columns: 350px 1fr;
+`
+
+const columnsLayoutClose = css`
+    grid-template-columns: 0 1fr;
+`
+
+const getShowBar = props => {
+        if (props.isOpen) {
+        return columnsLayoutOpen
+        }
+    
+        return columnsLayoutClose
+  };
+  
 export const Grid = styled.div`
     grid-area: mainview;
     display: grid;
-    grid-template-columns: 220px 1fr;
+    ${getShowBar}
     grid-template-areas:
     "treeEditor treeView";
     height: 100vh;

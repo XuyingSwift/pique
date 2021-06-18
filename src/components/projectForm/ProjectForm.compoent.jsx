@@ -1,9 +1,10 @@
 import React from 'react';
 import * as s from './ProjectForm.styles';
-import CustomButton from '../customButton/CustomButtom.component'
+
 const ProjectForm = () => {
     return(
         <s.Container>
+          
             <s.Span>Pick a project that you want to visualize</s.Span>
             <s.Select>
               <option value="" hidden>
@@ -31,7 +32,7 @@ const ProjectForm = () => {
             <option value="green">Green</option>
           </s.Select>
 
-          <s.Span>Select the subtree you want to see</s.Span>
+          <s.Span>Select the Quality Aspect you want to see</s.Span>
           <s.Select>
             <option value="" hidden>
              Qaulity Aspect
@@ -43,7 +44,7 @@ const ProjectForm = () => {
             <option value="Non-repudiation">Non-repudiation</option>
             <option value="Integrity">Integrity</option>
           </s.Select>
-          <s.Span>Select the subtree you want to see</s.Span>
+          <s.Span>Select the Product Factor you want to see</s.Span>
           <s.Select>
             <option value="" hidden>
              Profuct Factors
@@ -55,9 +56,7 @@ const ProjectForm = () => {
             <option value="Non-repudiation">Non-repudiation</option>
             <option value="Integrity">Integrity</option>
           </s.Select>
-          <s.ButtonGroupContainer>
-            <CustomButton>Submit</CustomButton>
-          </s.ButtonGroupContainer>
+
       </s.Container>
     )
 }

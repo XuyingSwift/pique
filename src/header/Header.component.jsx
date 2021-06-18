@@ -5,6 +5,7 @@ import { auth } from '../firebase/firebase.utils';
 import UserAvatar from '../components/userAvatar/userAvatar.component'
 import UserAvatarDropdown from '../components/userAvatarDropdown/UserAvatarDropDown.component'
 
+
 const Header = ({currentUser, hidden}) => {
     return (
         <s.HeaderContainer>
@@ -15,6 +16,7 @@ const Header = ({currentUser, hidden}) => {
                 {currentUser ?  <s.OptionLink to='/' style={{textDecoration: 'none'}} onClick={() => auth.signOut()}> sign out</s.OptionLink> 
                 : <s.OptionLink to='/signin' style={{textDecoration: 'none'}}> Sign In</s.OptionLink> }
                 {currentUser ? <s.OptionLink to='div' style={{textDecoration: 'none'}}><UserAvatar/></s.OptionLink> : null}
+
             </s.OptionsContainer> 
             {(hidden)? null : <UserAvatarDropdown/>}
             
