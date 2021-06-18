@@ -4,18 +4,12 @@ import pique from '../assets/PIQUE_png.png';
 import {Link} from 'react-router-dom';
 import {MenuItemList} from './MenuItem';
 import UserProfile from '../components/userSidenavProfile/UserSidenaProfile.component'
-
-class SideNav extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state ={
-            isOpen : true
-        }
-    }
-   MeunItemJSX = MenuItemList.map(
+import {connect} from 'react-redux';
+const SideNav = ({currentUser}) => {
+    
+    console.log(" side bar djfks", currentUser)
+    const MeunItemJSX = MenuItemList.map(
         (item, index) => {
-            console.log(item)
             return (
                 <Link to={`${item.path}`} style={{textDecoration: 'none'}} key={index}>
                     <s.MenuItem>
@@ -27,27 +21,25 @@ class SideNav extends React.Component {
         }
     )
 
-    isOpen = () => {
-        this.setState({isOpen : !this.state.isOpen})
-    }
-
-    render() {
-        return (
+    return (
             <s.SidenavContainer>
                 <s.HeaderWrapper>
                     <s.LogoIcon src={pique}/>
                         <s.SidebarHeader>PIQUE</s.SidebarHeader>               
                 </s.HeaderWrapper>
-                <UserProfile/>
+                {currentUser ? <UserProfile/> : null}              
                 <s.MenuItemList>
-                       {this.MeunItemJSX}
+                       {MeunItemJSX}
                 </s.MenuItemList>
-                <s.ToggleContainer onClick={this.isOpen}>
+                <s.ToggleContainer>
                     <s.Toggler />
                 </s.ToggleContainer>
             </s.SidenavContainer>
         )
-    }   
+    
 }
 
-export default SideNav
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+export default connect(mapStateToProps)(SideNav)

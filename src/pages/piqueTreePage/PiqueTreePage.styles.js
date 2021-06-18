@@ -33,5 +33,5 @@ export const TreeEditor = styled.div`
 
 export const TreeView = styled.div`
     grid-area: treeView;
-    background-color: green;
+    background-color: white;
 `

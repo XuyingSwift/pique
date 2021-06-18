@@ -8,7 +8,7 @@ import React from 'react';
 export const MenuItemList = [
     {
         title: 'Dashboard',
-        path:'/',
+        path:'/dashboard',
         icon: <AiOutlineDashboard/>
     },
     {

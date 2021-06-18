@@ -2,12 +2,27 @@ import React from 'react';
 import { useCenteredTree } from './helper.utils'
 import Tree from "react-d3-tree";
 import cerl from './output.json'
-
+import * as s from '../../components/colors/colors.js'
 
 const containerStyles = {
     width: "100vw",
     height: "100vh"
   };
+  const nodeRiskColor = (score) => {
+    const newScore = Number(score)
+     if (newScore < 0.3 && newScore !== ''){
+       return {border: "1px solid black", backgroundColor: s.Red}
+     } else if ( 0.3 < newScore <0.5  && newScore !== '') {
+       return {border: "1px solid black", backgroundColor: s.DarkRed}
+     }
+     else if ( 0.5<newScore <0.7  && newScore !== '') {
+      return {border: "1px solid black", backgroundColor: s.Buttercup}
+    }else if ( 0.7< newScore <=1.0  && newScore !== '') {
+      return {border: "1px solid black", backgroundColor: s.Green}
+    }else{
+      return {border: "1px solid black", backgroundColor: "blue"}
+    }
+  }
   
   // define and style the path function into the tree
   /*const straightPathFunc = (linkDatum, orientation) => {
@@ -23,9 +38,7 @@ const containerStyles = {
     <g>
       <circle r={15}></circle>
       <foreignObject {...foreignObjectProps}>
-      <div style={  (nodeDatum.value > 0.3  && nodeDatum.value !== '' )? { border: "1px solid black",  backgroundColor: "#EEEDE7" } : {border: "1px solid black",  backgroundColor: "red"}
-        
-        }>
+      <div style={ nodeRiskColor(nodeDatum.value)}>
       <h3 style={{ textAlign: "center" }}>{"name: " + nodeDatum.name}</h3>
       <h3 style={{ textAlign: "center" }}>{"value: " + nodeDatum.value}</h3>
       {nodeDatum.children && (

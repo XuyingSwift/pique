@@ -46,4 +46,7 @@ export const SearchInput = styled.div`
       border: none;
   }`
 
-
+export const Toggle = styled.div`
+  font-size: 30px;
+  color: white;
+`

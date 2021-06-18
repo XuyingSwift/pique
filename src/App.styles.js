@@ -1,8 +1,23 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+const withbar = css`
+grid-template-columns: 240px 1fr;
+`
+
+const withoutbar = css`
+grid-template-columns: 0 1fr;
+`
+
+const getShowBar = props => {
+    if (props.hidden) {
+    return withoutbar
+    }
+
+    return withbar
+};
 
 export const AppGrid= styled.div`
     display: grid;
-    grid-template-columns: 240px 1fr;
+    ${getShowBar}
     grid-template-rows: 50px 1fr 50px;
     grid-template-areas:
     "sidenav headernav"

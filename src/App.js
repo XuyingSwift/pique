@@ -34,14 +34,16 @@ class App extends React.Component {
     // stop the observer to stop litsening to the auth, set it back to null;
     this.unsubscribeFromAuth();
   }
-
+  
   render() {
+   const {hidden} = this.props
     return (
-      <AppGrid>
+      <AppGrid hidden={hidden} >
         <Headernav><Header/></Headernav>
-        <Sidenav>
+        {hidden ? null : <Sidenav>
           <SideNav/>
-        </Sidenav>
+        </Sidenav>}
+        
         <Mainview>
           <MainView/>
         </Mainview>
@@ -58,7 +60,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  hidden: state.userAvatar.hidden, 
+
 });
 
 
