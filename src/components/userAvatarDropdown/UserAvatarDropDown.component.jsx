@@ -7,9 +7,10 @@ import {IoCodeWorkingOutline} from 'react-icons/io5'
 import CustomButton from '../customButton/CustomButtom.component';
 import {connect} from 'react-redux';
 import {toggleUserIconHidden} from '../../redux/userAvatar/userAvatar.actions'
+import { toggleSidebar } from '../../redux/headerToggle/headerToggle.actions';
 
 
-const UserAvatarDropdown = ({toggleUserIconHidden}) => {
+const UserAvatarDropdown = ({toggleUserIconHidden, toggleSidebar}) => {
 
     return (
         <s.CartDropdownContainer>
@@ -33,7 +34,7 @@ const UserAvatarDropdown = ({toggleUserIconHidden}) => {
                 </s.DropdownList>
             </s.HeaderMenu>
 
-            <CustomButton onClick={() => {toggleUserIconHidden(); auth.signOut()}} >Sign out</CustomButton>
+            <CustomButton onClick={() => {toggleUserIconHidden(); auth.signOut(); toggleSidebar()}} >Sign out</CustomButton>
 
         </s.CartDropdownContainer>
     
@@ -41,7 +42,8 @@ const UserAvatarDropdown = ({toggleUserIconHidden}) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    toggleUserIconHidden: () => dispatch(toggleUserIconHidden())
+    toggleUserIconHidden: () => dispatch(toggleUserIconHidden()),
+    toggleSidebar: () => dispatch(toggleSidebar())
 })
 
 export default connect(null, mapDispatchToProps)(UserAvatarDropdown);

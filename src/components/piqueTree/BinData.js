@@ -1,6 +1,6 @@
 export const width = '600px';
 
-export const height= '400px'
+export const height= '300px'
 
 
 export const chartType = 'LineChart'

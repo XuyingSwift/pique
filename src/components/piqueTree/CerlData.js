@@ -24,7 +24,7 @@ export const data = [
 };
 
 export const width="100%"
-export const height="400px"
+export const height="300px"
 export const chartType="Table"
 
 export const showButton = true;

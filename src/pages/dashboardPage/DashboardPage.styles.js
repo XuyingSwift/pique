@@ -7,7 +7,8 @@ export const DashboardGrid = styled.div`
 export const ChartGroupWrapper = styled.div`
     column-count: 2;
     column-gap: 20px;
-    margin: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
     
 `
 export const Group = styled.div`
@@ -18,7 +19,7 @@ export const Group = styled.div`
     background-color: #d3d6de;
     margin-bottom: 10px;
     -webkit-column-break-inside: avoid;
-    padding: 20px;
+    padding: 24px;
     box-sizing: border-box;
     
 `

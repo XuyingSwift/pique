@@ -1,7 +1,6 @@
 import React from 'react';
 import * as s from './Header.styles';
 import {connect} from 'react-redux';
-import { auth } from '../firebase/firebase.utils';
 import UserAvatar from '../components/userAvatar/userAvatar.component'
 import UserAvatarDropdown from '../components/userAvatarDropdown/UserAvatarDropDown.component'
 import {FaBars} from 'react-icons/fa'
@@ -23,8 +22,7 @@ const Header = ({currentUser, hidden, toggleSidebar}) => {
             </s.HeaderSearch>
             <s.OptionsContainer>
                 {currentUser ? <s.OptionLink to='/' style={{textDecoration: 'none'}}><UserAvatar/></s.OptionLink> : null}
-                {currentUser ?  <s.OptionLink to='/' style={{textDecoration: 'none'}} onClick={() => auth.signOut()}> sign out</s.OptionLink> 
-                    : <s.OptionLink to='/signin' style={{textDecoration: 'none'}}> Sign In</s.OptionLink> }
+                <s.OptionLink to='/signin' style={{textDecoration: 'none'}}> Sign In</s.OptionLink> 
 
             </s.OptionsContainer> 
             {(!hidden ) && <UserAvatarDropdown/>}

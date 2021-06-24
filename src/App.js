@@ -9,6 +9,7 @@ import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import Footer from './footer/Footer.component.jsx'
 import { createStructuredSelector } from 'reselect';
 import { SelectHeaderToggle } from './redux/headerToggle/headerToggle.selector'
+import { selectCurrentUser } from './redux/user/user.selector'
 
 
 class App extends React.Component {
@@ -71,7 +72,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = createStructuredSelector({
- toggle: SelectHeaderToggle
+ toggle: SelectHeaderToggle,
+ currentUser: selectCurrentUser
 })
 
 
