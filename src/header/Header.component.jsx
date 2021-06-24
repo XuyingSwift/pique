@@ -4,15 +4,18 @@ import {connect} from 'react-redux';
 import { auth } from '../firebase/firebase.utils';
 import UserAvatar from '../components/userAvatar/userAvatar.component'
 import UserAvatarDropdown from '../components/userAvatarDropdown/UserAvatarDropDown.component'
-import {CgToggleOn} from 'react-icons/cg'
-import { toggleSidebar } from '../redux/sidebar/sidebar.actions';
-import { toggleUserIconHidden } from '../redux/userAvatar/userAvatar.actions';
+import {FaBars} from 'react-icons/fa'
+import { toggleSidebar } from '../redux/headerToggle/headerToggle.actions'
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../redux/user/user.selector';
+import { SelectHeaderToggle } from '../redux/headerToggle/headerToggle.selector';
+import { SelectUserAvatarHidden } from '../redux/userAvatar/userAvatar.selector';
 
-const Header = ({currentUser, hidden, toggleUserIconHidden}) => {
+const Header = ({currentUser, hidden, toggleSidebar}) => {
     return (
         <s.HeaderContainer>
             {currentUser ? <s.Toggle>
-                <CgToggleOn onClick={toggleUserIconHidden}/>
+                <FaBars onClick={toggleSidebar}/>
             </s.Toggle> : null}
                
             <s.HeaderSearch> 
@@ -24,21 +27,21 @@ const Header = ({currentUser, hidden, toggleUserIconHidden}) => {
                     : <s.OptionLink to='/signin' style={{textDecoration: 'none'}}> Sign In</s.OptionLink> }
 
             </s.OptionsContainer> 
-            {/*{(hidden ) ? null : <UserAvatarDropdown/>}*/}
+            {(!hidden ) && <UserAvatarDropdown/>}
             
         </s.HeaderContainer>
         
     )
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser,
-    hidden: state.userAvatar.hidden, 
-   
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    toggle: SelectHeaderToggle,
+    hidden: SelectUserAvatarHidden
 })
 
 const mapDispatchToProps = dispatch => ({
-    toggleUserIconHidden: () => dispatch(toggleUserIconHidden())
+    toggleSidebar: () => dispatch(toggleSidebar())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

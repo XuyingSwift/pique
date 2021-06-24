@@ -40,6 +40,7 @@ const SideNav = ({currentUser}) => {
 }
 
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    hidden: state.userAvatar.hidden, 
 })
 export default connect(mapStateToProps)(SideNav)

@@ -49,4 +49,6 @@ export const SearchInput = styled.div`
 export const Toggle = styled.div`
   font-size: 30px;
   color: white;
+  position: relative;
+  display: inline-block;
 `

@@ -11,4 +11,4 @@ const UserAvatar = ({toggleUserIconHidden}) => {
 const mapDispatchToProps = dispatch => ({
     toggleUserIconHidden: () => dispatch(toggleUserIconHidden())
 })
-export default connect(mapDispatchToProps)(UserAvatar);
+export default connect(null, mapDispatchToProps)(UserAvatar);

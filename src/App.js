@@ -7,6 +7,10 @@ import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/user/user.actions'
 import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import Footer from './footer/Footer.component.jsx'
+import { createStructuredSelector } from 'reselect';
+import { SelectHeaderToggle } from './redux/headerToggle/headerToggle.selector'
+
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
@@ -34,16 +38,23 @@ class App extends React.Component {
     // stop the observer to stop litsening to the auth, set it back to null;
     this.unsubscribeFromAuth();
   }
-  
+  hideSideNav = ({}) => {
+
+  }
   render() {
-   const {hidden} = this.props
+   const {toggle} = this.props
     return (
-      <AppGrid hidden={hidden} >
+      <AppGrid hidden={toggle} >
         <Headernav><Header/></Headernav>
-        {hidden ? null : <Sidenav>
-          <SideNav/>
-        </Sidenav>}
-        
+
+        {toggle ? 
+            null
+            :
+            <Sidenav>
+              <SideNav/>
+            </Sidenav>
+           
+        }
         <Mainview>
           <MainView/>
         </Mainview>
@@ -59,11 +70,9 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-  hidden: state.userAvatar.hidden, 
-
-});
+const mapStateToProps = createStructuredSelector({
+ toggle: SelectHeaderToggle
+})
 
 
 export default connect(mapStateToProps , mapDispatchToProps)(App);

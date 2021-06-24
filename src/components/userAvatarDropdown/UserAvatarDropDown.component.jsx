@@ -4,12 +4,13 @@ import {auth} from '../../firebase/firebase.utils'
 import {AiOutlineProfile} from 'react-icons/ai';
 import {RiAccountBoxLine} from 'react-icons/ri';
 import {IoCodeWorkingOutline} from 'react-icons/io5'
+import CustomButton from '../customButton/CustomButtom.component';
+import {connect} from 'react-redux';
+import {toggleUserIconHidden} from '../../redux/userAvatar/userAvatar.actions'
 
 
-const UserAvatarDropdown = () => {
+const UserAvatarDropdown = ({toggleUserIconHidden}) => {
 
-  
-    
     return (
         <s.CartDropdownContainer>
             <s.HeaderMenu>
@@ -32,11 +33,15 @@ const UserAvatarDropdown = () => {
                 </s.DropdownList>
             </s.HeaderMenu>
 
+            <CustomButton onClick={() => {toggleUserIconHidden(); auth.signOut()}} >Sign out</CustomButton>
+
         </s.CartDropdownContainer>
     
     )
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    toggleUserIconHidden: () => dispatch(toggleUserIconHidden())
+})
 
-
-export default UserAvatarDropdown;
+export default connect(null, mapDispatchToProps)(UserAvatarDropdown);
