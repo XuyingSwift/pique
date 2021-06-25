@@ -11,3 +11,13 @@ export const selectRiskLevel = createSelector(
     [selectPiquetreeForm],
     piquetreeForm => piquetreeForm.riskLevel
 )
+
+export const selectProjects = createSelector(
+    [selectPiquetreeForm],
+    piquetreeForm => piquetreeForm.projects
+)
+
+export const selectProjectsForPiqueTree = createSelector(
+    [selectProjects],
+    projects  => projects ? Object.keys(projects).map(key => projects[key]) : []
+)

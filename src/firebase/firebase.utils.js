@@ -39,16 +39,31 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
   };
 
-export const createPorjectJson = async (collectionKey, ObjectsToAdd) => {
-  const collectionRef = firestore.collection(collectionKey);
+export const createPorjectJson = async (Key, ObjectsToAdd) => {
+  const Ref = firestore.collection(Key);
   const batch = firestore.batch();
   console.log("adding", ObjectsToAdd)
   ObjectsToAdd.forEach(object => {
-    const newDocRef = collectionRef.doc();
+    const newDocRef = Ref.doc();
     batch.set(newDocRef, object)
   })
 
   return await batch.commit();
+}
+
+export const convertProjectsSnapshotToMap = (projects) => {
+  const transformedProjects = projects.docs.map((doc) => {
+    const {projectName, json} = doc.data();
+    return {
+      id: doc.id,
+      projectName,
+      json
+    }
+  })
+  return transformedProjects.reduce((accumulator, project) => {
+    accumulator[project.projectName.toUpperCase()] = project;
+    return accumulator;
+  }, {});
 }
 
 export const auth = firebase.auth();
