@@ -5,11 +5,13 @@ import SideNav from './sidenav/SideNav.compoent'
 import Header from './header/Header.component'
 import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/user/user.actions'
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument, createPorjectJson} from './firebase/firebase.utils';
 import Footer from './footer/Footer.component.jsx'
 import { createStructuredSelector } from 'reselect';
 import { SelectHeaderToggle } from './redux/headerToggle/headerToggle.selector'
 import { selectCurrentUser } from './redux/user/user.selector'
+
+import {data} from './redux/piquetreeform/piqueData';
 
 
 class App extends React.Component {
@@ -31,6 +33,7 @@ class App extends React.Component {
       }
       console.log(" app current user", userAuth)
       setCurrentUser(userAuth);
+      createPorjectJson("projects", data)
     });
     
   }

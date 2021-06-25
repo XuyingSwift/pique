@@ -4,6 +4,7 @@ import userAvatarReducer from './userAvatar/userAvatar.reducer';
 import HeaderToggleReducer from './headerToggle/headerToggle.reducer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import PiquetreeFormReducer from './piquetreeform/piquetreeform.reducer';
 
 const persistConfig = {
     key: 'root',
@@ -14,7 +15,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userReducer,
     userAvatar: userAvatarReducer,
-    headerToggle: HeaderToggleReducer
+    headerToggle: HeaderToggleReducer,
+    piquetreeForm: PiquetreeFormReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
