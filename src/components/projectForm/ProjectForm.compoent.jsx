@@ -4,7 +4,7 @@ import CustomButton from '../../components/customButton/CustomButtom.component'
 import {connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {selectProjectsForPiqueTree, selectRiskLevel} from '../../redux/piquetreeform/piquetreeform.selector'
-import {updateProjects} from '../../redux/piquetreeform/piquetreefrom.actions';
+import {updateProjects, setProjectName, setRiskLevel} from '../../redux/piquetreeform/piquetreefrom.actions';
 import {convertProjectsSnapshotToMap, firestore} from '../../firebase/firebase.utils';
 
 class ProjectForm extends React.Component {
@@ -26,7 +26,7 @@ class ProjectForm extends React.Component {
   }
 
   render() {
-    const {projects, riskLevels} = this.props;
+    const {projects, riskLevels, setProjectName, setRiskLevel} = this.props;
     return(
       <s.Container>         
           <s.Span>Pick a project that you want to visualize</s.Span>
@@ -35,7 +35,7 @@ class ProjectForm extends React.Component {
               Project Name
             </option>
             {
-              projects.map((project, index) => <option value={index} onClick={() => {}}>{project.projectName}</option>)
+              projects.map((project, index) => <option value={index} onChange={setProjectName(project.projectName)} ob>{project.projectName}</option>)
             }
           </s.Select>
         
@@ -45,7 +45,7 @@ class ProjectForm extends React.Component {
               Risk Levels
             </option>
             {
-              riskLevels.map((riskLevel, index) => <option value={index}>{riskLevel}</option>)
+              riskLevels.map((riskLevel, index) => <option value={index} onChange={setRiskLevel(riskLevel)}>{riskLevel}</option>)
             }
           </s.Select>
 
@@ -89,7 +89,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateProjects: (projectMap) => dispatch(updateProjects(projectMap))
+  updateProjects: (projectMap) => dispatch(updateProjects(projectMap)),
+  setProjectName: (projectName) => dispatch(setProjectName(projectName)),
+  setRiskLevel: (riskLevel) => dispatch(setRiskLevel(riskLevel))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectForm);

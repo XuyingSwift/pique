@@ -21,3 +21,13 @@ export const selectProjectsForPiqueTree = createSelector(
     [selectProjects],
     projects  => projects ? Object.keys(projects).map(key => projects[key]) : []
 )
+
+export const selectProjectsFetching = createSelector(
+    [selectPiquetreeForm],
+    piquetreeForm => piquetreeForm.isFetching
+)
+
+export const selectPiqueTreeJson = createSelector(
+    [selectPiquetreeForm],
+    piquetreeForm => piquetreeForm.piqueTree
+)
