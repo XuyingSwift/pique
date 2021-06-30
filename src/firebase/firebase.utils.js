@@ -61,7 +61,7 @@ export const convertProjectsSnapshotToMap = (projects) => {
     }
   })
   return transformedProjects.reduce((accumulator, project) => {
-    accumulator[project.projectName.toUpperCase()] = project;
+    accumulator[project.projectName.toUpperCase()] = project
     return accumulator;
   }, {});
 }

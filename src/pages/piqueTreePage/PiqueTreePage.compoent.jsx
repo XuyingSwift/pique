@@ -1,33 +1,57 @@
-import TreeVi from './TreeVi.compoent'
 import React from 'react';
-import ProjectForm from '../../components/projectForm/ProjectForm.compoent';
-import Editor from '../../components/projectForm/Editor.component';
 import * as s from './PiqueTreePage.styles'
 import { createStructuredSelector } from 'reselect';
-import { selectProjectName, selectRiskLevel } from '../../redux/piquetreeform/piquetreeform.selector';
+import {selectProjectName, selectProjects, selectProjectsForTree} from '../../redux/piquetreeform/piquetreeform.selector';
 import {connect} from 'react-redux';
+import TreeEditor from '../../components/treeEditor/TreeEditor.component'
+import { setPiqueTree, setProjectName } from '../../redux/piquetreeform/piquetreefrom.actions';
+class PiqueTreePage extends React.Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          show: false
+        };
+      }
+      
+      /*componentDidMount() {
+        const {fetchProjectsStartAsync} = this.props;
+  
+        fetchProjectsStartAsync();
+      }*/
 
-const PiqueTreePage = ({projectName, riskLevel}) =>{
-    const [show, setShow] = React.useState(false);
+      handleShow = () => {
+          this.setState({show: !this.state.show})
+      }
 
-    return (
-        <s.Grid isOpen={show}>
-        <s.TreeEditor><Editor/></s.TreeEditor>
-        <s.TreeView>
-            <button onClick={() => setShow(!show)}>
-                {show ? "Close Editor" : "Open Editor"}
-           </button>
-           {
-               projectName ? <TreeVi projectName={projectName} riskLevel={riskLevel}/> : null
-           }
-        </s.TreeView>           
-        </s.Grid>
-    )
+  
+    render() {
+        const {projects, projectName, setPiqueTree} = this.props
+        return (
+            <s.Grid isOpen={this.state.show}>
+            <s.TreeEditor><TreeEditor/></s.TreeEditor>
+            <s.TreeView>
+                <button onClick={this.handleShow}>
+                    {this.state.show ? "Close Editor" : "Open Editor"}
+               </button>
+              
+              
+                
+
+            </s.TreeView>
+            
+            </s.Grid>
+        )
+    }
 }
 
 const mapStateToProps = createStructuredSelector({
-    projectName: selectProjectName,
-    riskLevel: selectRiskLevel
+  projects: selectProjectsForTree,
+  projectName: selectProjectName
 })
 
-export default connect(mapStateToProps)(PiqueTreePage);
+const mapDispatchToProps = dispatch => ({
+  setPiqueTree: data => dispatch(setPiqueTree(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PiqueTreePage);

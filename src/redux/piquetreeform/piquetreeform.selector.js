@@ -1,33 +1,21 @@
 import { createSelector } from "reselect";
 
-const selectPiquetreeForm = state => state.piquetreeForm;
-
-export const selectProjectName = createSelector(
-    [selectPiquetreeForm],
-    piquetreeForm => piquetreeForm.projectName
-)
-
-export const selectRiskLevel = createSelector(
-    [selectPiquetreeForm],
-    piquetreeForm => piquetreeForm.riskLevel
-)
+const pique = state => state.pique;
 
 export const selectProjects = createSelector(
-    [selectPiquetreeForm],
-    piquetreeForm => piquetreeForm.projects
+    [pique],
+    pique => pique.projects
+)
+export const selectTree= createSelector(
+    [pique],
+    pique => pique.tree
 )
 
-export const selectProjectsForPiqueTree = createSelector(
+export const selectProjectName= createSelector(
+    [pique],
+    pique => pique.projectName
+)
+export const selectProjectsForTree = createSelector(
     [selectProjects],
-    projects  => projects ? Object.keys(projects).map(key => projects[key]) : []
-)
-
-export const selectProjectsFetching = createSelector(
-    [selectPiquetreeForm],
-    piquetreeForm => piquetreeForm.isFetching
-)
-
-export const selectPiqueTreeJson = createSelector(
-    [selectPiquetreeForm],
-    piquetreeForm => piquetreeForm.piqueTree
-)
+    projects => Object.keys(projects).map(key => projects[key])
+  );
