@@ -32,7 +32,7 @@ class PiqueTreePage extends React.Component {
       }
     
       componentWillUnmount() {
-        this.unsubscribeFromSnapshot();
+        this.unsubscribeFromSnapshot;
       }
       
       /*componentDidMount() {
