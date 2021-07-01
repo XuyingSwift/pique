@@ -11,8 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { SelectHeaderToggle } from './redux/headerToggle/headerToggle.selector'
 import { selectCurrentUser } from './redux/user/user.selector'
 
-//import {data} from './redux/piquetreeform/piqueData';
-
+//import {PIQUE_DATA} from './redux/piquetreeform/upData';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -33,7 +32,7 @@ class App extends React.Component {
       }
       console.log(" app current user", userAuth)
       setCurrentUser(userAuth);
-      //createPorjectJson("projects", data)
+      //createPorjectJson("projects", PIQUE_DATA)
     });
     
   }

@@ -4,9 +4,10 @@ import { createStructuredSelector } from 'reselect';
 import { selectRiskLevel, selectTree} from '../../redux/piquetreeform/piquetreeform.selector';
 import {connect} from 'react-redux';
 import TreeEditor from '../../components/treeEditor/TreeEditor.component'
-import { setPiqueTree } from '../../redux/piquetreeform/piquetreefrom.actions';
+import { setPiqueTree, updateProjects } from '../../redux/piquetreeform/piquetreefrom.actions';
 import TreeModel from './TreeModel.component'
-import NodeSizeSelect from '../../components/treeEditor/nodeSizeSelect/NodeSizeSelect.component'
+import {firestore, convertProjectsSnapshotToMap} from '../../firebase/firebase.utils'
+
 class PiqueTreePage extends React.Component {
     constructor(props) {
         super(props);
@@ -14,6 +15,24 @@ class PiqueTreePage extends React.Component {
         this.state = {
           show: false
         };
+      }
+
+      unsubscribeFromSnapshot = null;
+      componentDidMount() {
+        const {updateProjects} = this.props;
+        const projectRef = firestore.collection('projects');
+    
+    
+        projectRef.get().then(
+          snapshot => {
+            const projectMap = convertProjectsSnapshotToMap(snapshot);
+            updateProjects(projectMap);
+          }
+        )
+      }
+    
+      componentWillUnmount() {
+        this.unsubscribeFromSnapshot();
       }
       
       /*componentDidMount() {
@@ -52,7 +71,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setPiqueTree: data => dispatch(setPiqueTree(data))
+  setPiqueTree: data => dispatch(setPiqueTree(data)),
+  updateProjects: data => dispatch(updateProjects(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PiqueTreePage);
