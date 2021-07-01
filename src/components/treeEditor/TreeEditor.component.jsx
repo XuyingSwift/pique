@@ -1,35 +1,55 @@
 import React from 'react';
-import { createStructuredSelector } from 'reselect';
-import { selectProjectName, selectProjectsForTree , selectTree} from '../../redux/piquetreeform/piquetreeform.selector';
-import {connect} from 'react-redux'
-import {setProjectName, setPiqueTree} from '../../redux/piquetreeform/piquetreefrom.actions'
-const TreeEditor = ({projectName, setProjectName, projects, setPiqueTree}) => {
-    const handleChange = e => {
-        setProjectName(e.target.value)
-    }
-    const findJson = (projects, projectName, setPiqueTree) => {
-        projects.filter(p => p.projectName===projectName).map((p, i) => setPiqueTree(p.json)) 
-      }
-
+import * as s from './TreeEditor.styles'
+import ProjectSelectComponent from './projectSelect/ProjectSelect.component';
+import RiskLevelSelectComponent from './riskLevelSelect/RiskLevelSelect.component';
+import NodeSizeSelectComponent from './nodeSizeSelect/NodeSizeSelect.component';
+import Orientation from './orientation/Orientation.component';
+import CollapseNeighbornodes from './collapseNeighbornodes/CollapseNeighbornodes.component';
+const TreeEditor = () => {
+    const riskLevelOptions = [
+        {
+            label: "Dark Red",
+            value: "dark red"
+        },
+        {
+            label: "Red",
+            value: "red"
+        },
+        {
+            label: "Yellow",
+            value: "yellow",
+        },
+        {
+            label: "Green",
+            value: "green"
+        },
+        {
+            label: "All Color",
+            value: ''
+        }    
+    ]
+    const orientations = [
+        {
+            label: "Horizontal",
+            value: "horizontal"
+        },
+        {
+            label: "Vertical",
+            value: "Vertical"
+        }
+    ]
     return (
-        <div>
-            <select value={projectName} onChange={handleChange}>
-                {projects.map((p, i) => <option key={i} value={p.projectName}>{p.projectName}</option>)}
-            </select>
-            <button onClick={findJson(projects, projectName, setPiqueTree)}>submit</button>
-        </div>
+        <s.Container>
+            <s.Span>Pick a Project to Visualize</s.Span>
+            <ProjectSelectComponent/>
+            <s.Span>Pick a Risk Level</s.Span>
+            <RiskLevelSelectComponent riskLevelOptions={riskLevelOptions}/>
+            <s.Span>Select Orientation</s.Span>
+            <Orientation orientations={orientations}/>
+            <s.Span>Collapse Same Level Nodes</s.Span>
+            <CollapseNeighbornodes/>
+        </s.Container>
     )
 }
 
-const mapStateToProps = createStructuredSelector({
-    projects: selectProjectsForTree,
-    tree: selectTree,
-    projectName: selectProjectName
-})
-
-const mapDispatchToProps = dispatch => ({
-    setProjectName: data => dispatch(setProjectName(data)),
-    setPiqueTree: data => dispatch(setPiqueTree(data))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(TreeEditor)
+export default TreeEditor;

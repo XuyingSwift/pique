@@ -55,3 +55,17 @@ export const setPiqueTree = (data) => ({
     type: PiqueTreeFormActionTypes.SET_PIQUE_TREE,
     payload: data
 })
+
+export const setNodeSize = (data) => ({
+    type: PiqueTreeFormActionTypes.SET_NODE_SIZE,
+    payload: data
+})
+
+export const setOrientation = (data) => ({
+    type: PiqueTreeFormActionTypes.SET_ORIENTATION,
+    payload: data
+})
+
+export const setNeighbornodes = () => ({
+    type: PiqueTreeFormActionTypes.SET_NEIGHBOR_NODES
+})

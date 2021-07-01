@@ -1,10 +1,12 @@
 import React from 'react';
 import * as s from './PiqueTreePage.styles'
 import { createStructuredSelector } from 'reselect';
-import {selectProjectName, selectProjects, selectProjectsForTree} from '../../redux/piquetreeform/piquetreeform.selector';
+import { selectRiskLevel, selectTree} from '../../redux/piquetreeform/piquetreeform.selector';
 import {connect} from 'react-redux';
 import TreeEditor from '../../components/treeEditor/TreeEditor.component'
-import { setPiqueTree, setProjectName } from '../../redux/piquetreeform/piquetreefrom.actions';
+import { setPiqueTree } from '../../redux/piquetreeform/piquetreefrom.actions';
+import TreeModel from './TreeModel.component'
+import NodeSizeSelect from '../../components/treeEditor/nodeSizeSelect/NodeSizeSelect.component'
 class PiqueTreePage extends React.Component {
     constructor(props) {
         super(props);
@@ -26,18 +28,17 @@ class PiqueTreePage extends React.Component {
 
   
     render() {
-        const {projects, projectName, setPiqueTree} = this.props
+        const {tree,} = this.props
         return (
             <s.Grid isOpen={this.state.show}>
             <s.TreeEditor><TreeEditor/></s.TreeEditor>
             <s.TreeView>
-                <button onClick={this.handleShow}>
+              <button onClick={this.handleShow}>
                     {this.state.show ? "Close Editor" : "Open Editor"}
-               </button>
-              
-              
-                
+              </button>
 
+             {(tree) ? <TreeModel/> : null}
+        
             </s.TreeView>
             
             </s.Grid>
@@ -46,8 +47,8 @@ class PiqueTreePage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  projects: selectProjectsForTree,
-  projectName: selectProjectName
+  tree: selectTree,
+  riskLevel: selectRiskLevel
 })
 
 const mapDispatchToProps = dispatch => ({
