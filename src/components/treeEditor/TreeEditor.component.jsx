@@ -2,9 +2,9 @@ import React from 'react';
 import * as s from './TreeEditor.styles'
 import ProjectSelectComponent from './projectSelect/ProjectSelect.component';
 import RiskLevelSelectComponent from './riskLevelSelect/RiskLevelSelect.component';
-import NodeSizeSelectComponent from './nodeSizeSelect/NodeSizeSelect.component';
 import Orientation from './orientation/Orientation.component';
 import CollapseNeighbornodes from './collapseNeighbornodes/CollapseNeighbornodes.component';
+import UploadFile from './uploadFile/UploadFile.component';
 const TreeEditor = () => {
     const riskLevelOptions = [
         {
@@ -40,7 +40,9 @@ const TreeEditor = () => {
     ]
     return (
         <s.Container>
-            <s.Span>Pick a Project to Visualize</s.Span>
+            <s.Span>Upload Your Pique Model</s.Span>
+            <UploadFile/>
+            <s.Span>Pick An Exisiting Project to Visualize</s.Span>
             <ProjectSelectComponent/>
             <s.Span>Pick a Risk Level</s.Span>
             <RiskLevelSelectComponent riskLevelOptions={riskLevelOptions}/>

@@ -51,6 +51,13 @@ export const createPorjectJson = async (Key, ObjectsToAdd) => {
   return await batch.commit();
 }
 
+export const uploadAFile = async (key, file) => {
+  const ref = firestore.collection(key);
+  const batch = firestore.batch();
+  const newDocRef = ref.doc()
+  batch.set(newDocRef, file)
+  return await batch.commit();
+}
 export const convertProjectsSnapshotToMap = (projects) => {
   const transformedProjects = projects.docs.map((doc) => {
     const {projectName, json} = doc.data();
