@@ -9,7 +9,7 @@ import PiqueReducer from './piquetreeform/piquetreeform.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['user']
+    whitelist: ['user', 'pique']
 }
 
 const rootReducer = combineReducers({
