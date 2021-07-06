@@ -69,3 +69,8 @@ export const setOrientation = (data) => ({
 export const setNeighbornodes = () => ({
     type: PiqueTreeFormActionTypes.SET_NEIGHBOR_NODES
 })
+
+export const setUploadFile = (data) => ({
+    type: PiqueTreeActionTypes.SET_UPLOAD_FILE,
+    payload: data
+})

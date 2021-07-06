@@ -11,7 +11,8 @@ const INITIAL_STATE = {
     y: 200
   },
   orientation: '',
-  collapseNeighbornodes: false
+  collapseNeighbornodes: false,
+  uploadFile: null
 
 };
 
@@ -46,6 +47,11 @@ const PiqueReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         collapseNeighbornodes: !state.collapseNeighbornodes
+      }
+    case PiqueTreeFormActionTypes.SET_UPLOAD_FILE:
+      return {
+        ...state,
+        uploadFile: action.payload
       }
     default:
       return state;

@@ -40,3 +40,8 @@ export const selectCollpseNeighborNodes = createSelector(
     [pique],
     pique => pique.collapseNeighbornodes
 )
+
+export const selectUploadFile = createSelector(
+    [pique],
+    pique => pique.uploadFile
+)
