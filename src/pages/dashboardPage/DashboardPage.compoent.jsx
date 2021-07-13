@@ -18,26 +18,26 @@ const DashBoardPage = () => {
     const cardList = [
         {
             title: 'Tqi',
-            bcolor: DarkRed,
+            bcolor: DarkRed.value,
             score: 0.3,
             icon: <IoSkullOutline/>
             
         },
         {
             title: 'Security',
-            bcolor: Red,
+            bcolor: Red.value,
             score: 0.4,
             icon: <RiAlarmWarningLine/>
         },
         {
             title: 'securty',
-            bcolor: Yellow,
+            bcolor: Yellow.value,
             score: 0.6,
             icon:  <ImWarning/>
         },
         {
             title: 'securty',
-            bcolor: Green,
+            bcolor: Green.value,
             score: 0.8,
             icon: <RiSecurePaymentLine/>
         }
