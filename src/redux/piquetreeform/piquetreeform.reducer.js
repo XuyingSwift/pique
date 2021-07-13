@@ -2,7 +2,7 @@ import {PIQUE_DATA} from "./piqueData";
 import PiqueTreeFormActionTypes from './piquetreeform.actionTypes'
 
 const INITIAL_STATE = {
-  projects: PIQUE_DATA,
+  projects: [],
   tree: null,
   projectName: '',
   riskLevel: '',
@@ -12,7 +12,9 @@ const INITIAL_STATE = {
   },
   orientation: '',
   collapseNeighbornodes: false,
-  uploadFile: null
+  uploadFile: null,
+  fileName: '',
+  loadFinished: false
 
 };
 
@@ -52,6 +54,21 @@ const PiqueReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         uploadFile: action.payload
+      }
+    case PiqueTreeFormActionTypes.SET_FILE_NAME:
+      return {
+        ...state,
+        fileName: action.payload
+      }
+      case PiqueTreeFormActionTypes.SET_LOAD_FINISHED:
+      return {
+        ...state,
+        loadFinished: action.payload
+      }
+      case PiqueTreeFormActionTypes.UPDATE_PROJECTS:
+      return {
+        ...state,
+        projects: action.payload
       }
     default:
       return state;

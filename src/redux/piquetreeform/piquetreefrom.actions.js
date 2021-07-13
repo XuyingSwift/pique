@@ -74,3 +74,13 @@ export const setUploadFile = (data) => ({
     type: PiqueTreeActionTypes.SET_UPLOAD_FILE,
     payload: data
 })
+
+export const setFileName = (data) => ({
+    type: PiqueTreeActionTypes.SET_FILE_NAME,
+    payload: data
+})
+
+export const setLoadFinished = (data) => ({
+    type: PiqueTreeActionTypes.SET_LOAD_FINISHED,
+    payload: data
+})

@@ -51,12 +51,37 @@ export const createPorjectJson = async (Key, ObjectsToAdd) => {
   return await batch.commit();
 }
 
-export const uploadAFile = async (key, file) => {
-  const ref = firestore.collection(key);
-  const batch = firestore.batch();
-  const newDocRef = ref.doc()
-  batch.set(newDocRef, file)
-  return await batch.commit();
+// upload raw json to firebase
+export const uploadAFile = (key, name, file) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'}
+  }
+
+  firestore.collection(key).add(file)
+  .then((docRef) => { 
+    console.log("uploaed with id", docRef.id)
+    const id = docRef.id
+   fetch(`http://localhost:8080//postPiqueParsedModel?id=${id}`, requestOptions)
+            .then(response => response.json())
+            .catch((e) => {console.error("error from fetch data", e)})
+  })
+  .catch((error) => {console.error("Error addind document", error)});
+}
+
+export const getParsedModel = (name) => {
+  var docRef = firestore.collection("ParsedProjects").doc(name);
+
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+       console.log(JSON.stringify(doc.data()))
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+});
 }
 export const convertProjectsSnapshotToMap = (projects) => {
   const transformedProjects = projects.docs.map((doc) => {

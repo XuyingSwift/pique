@@ -5,7 +5,11 @@ import RiskLevelSelectComponent from './riskLevelSelect/RiskLevelSelect.componen
 import Orientation from './orientation/Orientation.component';
 import CollapseNeighbornodes from './collapseNeighbornodes/CollapseNeighbornodes.component';
 import UploadFile from './uploadFile/UploadFile.component';
-const TreeEditor = () => {
+import ParseFileComponent from './parseFile/ParseFile.component';
+import { createStructuredSelector } from 'reselect';
+import { selectFileName } from '../../redux/piquetreeform/piquetreeform.selector';
+import { connect } from 'react-redux';
+const TreeEditor = ({fileName}) => {
     const riskLevelOptions = [
         {
             label: "Dark Red",
@@ -54,4 +58,8 @@ const TreeEditor = () => {
     )
 }
 
-export default TreeEditor;
+const mapStateToProps = createStructuredSelector({
+    fileName: selectFileName
+})
+
+export default connect(mapStateToProps)(TreeEditor)
