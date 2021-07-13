@@ -22,7 +22,9 @@ const Header = ({currentUser, hidden, toggleSidebar}) => {
             </s.HeaderSearch>
             <s.OptionsContainer>
                 {currentUser ? <s.OptionLink to='/' style={{textDecoration: 'none'}}><UserAvatar/></s.OptionLink> : null}
-                <s.OptionLink to='/signin' style={{textDecoration: 'none'}}> Sign In</s.OptionLink> 
+                {currentUser ? <s.OptionLink to='/about' style={{textDecoration: 'none'}}>About</s.OptionLink>  : null}
+                <s.OptionLink to='/signin' style={{textDecoration: 'none'}}> Sign In</s.OptionLink>
+               
 
             </s.OptionsContainer> 
             {(!hidden ) && <UserAvatarDropdown/>}
