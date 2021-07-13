@@ -45,3 +45,14 @@ export const selectUploadFile = createSelector(
     [pique],
     pique => pique.uploadFile
 )
+
+export const selectFileName = createSelector(
+    [pique],
+    pique => pique.fileName
+)
+
+
+export const selectLoadFinished = createSelector(
+    [pique],
+    pique => pique.loadFinished
+)

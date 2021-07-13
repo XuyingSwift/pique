@@ -25,6 +25,7 @@ class PiqueTreePage extends React.Component {
     
         projectRef.get().then(
           snapshot => {
+            console.log(snapshot.docs)
             const projectMap = convertProjectsSnapshotToMap(snapshot);
             updateProjects(projectMap);
           }
