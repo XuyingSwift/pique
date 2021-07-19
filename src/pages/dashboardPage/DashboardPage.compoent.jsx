@@ -30,13 +30,13 @@ const DashBoardPage = () => {
             icon: <RiAlarmWarningLine/>
         },
         {
-            title: 'securty',
+            title: 'Compatibility',
             bcolor: Yellow.value,
             score: 0.6,
             icon:  <ImWarning/>
         },
         {
-            title: 'securty',
+            title: 'Performace',
             bcolor: Green.value,
             score: 0.8,
             icon: <RiSecurePaymentLine/>

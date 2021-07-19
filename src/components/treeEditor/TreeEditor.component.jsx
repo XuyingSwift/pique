@@ -5,7 +5,6 @@ import RiskLevelSelectComponent from './riskLevelSelect/RiskLevelSelect.componen
 import Orientation from './orientation/Orientation.component';
 import CollapseNeighbornodes from './collapseNeighbornodes/CollapseNeighbornodes.component';
 import UploadFile from './uploadFile/UploadFile.component';
-import ParseFileComponent from './parseFile/ParseFile.component';
 import { createStructuredSelector } from 'reselect';
 import { selectFileName } from '../../redux/piquetreeform/piquetreeform.selector';
 import { connect } from 'react-redux';

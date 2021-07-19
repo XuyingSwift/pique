@@ -16,7 +16,6 @@ export const Group = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: #d3d6de;
     margin-bottom: 10px;
     -webkit-column-break-inside: avoid;
     padding: 24px;

@@ -10,6 +10,27 @@ const PiqueChart = ({data, width, height, options, chartType, rootProps, showBut
     
     return (
         <div>
+            {showButton ? 
+            <button onClick={() => {
+                if (
+                chartWrapper === null ||
+                google === null ||
+                chartEditor === null
+                ){
+                    return
+                }
+                chartEditor.openDialog(chartWrapper)
+                google.visualization.events.addListener(chartEditor, 'ok', () => {
+                const newChartWrapper = chartEditor.getChartWrapper()
+                newChartWrapper.draw()
+                const newChartOptions = newChartWrapper.getOptions()
+                const newChartType = newChartWrapper.getChartType()
+                console.log('Chart type changed to ', newChartType)
+                console.log('Chart options changed to ', newChartOptions)
+                })
+            }}>
+            Edit Data
+            </button> : null}
             <Chart
                 width={width}
                 height={height}
@@ -26,29 +47,6 @@ const PiqueChart = ({data, width, height, options, chartType, rootProps, showBut
                 }}
                 chartPackages={['corechart', 'controls', 'charteditor']}
             />
-            {showButton ? <ButtonGroupContainer>
-                <CustomButton
-                onClick={() => {
-                    if (
-                    chartWrapper === null ||
-                    google === null ||
-                    chartEditor === null
-                    ){
-                        return
-                    }
-                    chartEditor.openDialog(chartWrapper)
-                    google.visualization.events.addListener(chartEditor, 'ok', () => {
-                    const newChartWrapper = chartEditor.getChartWrapper()
-                    newChartWrapper.draw()
-                    const newChartOptions = newChartWrapper.getOptions()
-                    const newChartType = newChartWrapper.getChartType()
-                    console.log('Chart type changed to ', newChartType)
-                    console.log('Chart options changed to ', newChartOptions)
-                    })
-                }}
-                >Edit Data</CustomButton>
-            </ButtonGroupContainer>
-            : null}         
             </div>
     )
        

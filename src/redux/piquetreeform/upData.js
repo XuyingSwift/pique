@@ -1,6 +1,6 @@
 export const PIQUE_DATA = [
     {
-        projectName: 'Pique Binary Model',
+        projectName: 'Binary Pique Model',
         json: {
             "name" : "Binary Security Quality",
             "value" : 0.8831,
@@ -1670,9 +1670,9 @@ export const PIQUE_DATA = [
             } ]
           }              
     },
-    {projectName: 'CERL C# Pique Model',
+    {projectName: 'C# Pique Model',
         json: {
-          "name" : "CERL TQI",
+          "name" : "C# TQI",
           "value" : 0.5512185,
           "children" : [ {
             "name" : "QualityAspect 03",

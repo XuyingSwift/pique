@@ -31,9 +31,6 @@ const SideNav = ({currentUser}) => {
                 <s.MenuItemList>
                        {MeunItemJSX}
                 </s.MenuItemList>
-                <s.ToggleContainer>
-                    <s.Toggler />
-                </s.ToggleContainer>
             </s.SidenavContainer>
         )
     
